@@ -57,7 +57,43 @@ Time spent: **24** hours spent in total
 		2. Wordpress version is exposed without any authentication or effort by an attacker.
   - [ ] Affected source code:
     - [source_file](https://core.trac.wordpress.org/browser/tags/version/src/source_file.php)
-
+### 5. WordPress <= 4.2 - ClickJacking
+  - [ ] Summary:
+		1. A comment containing an embedded iframe displaying a working page on the wpdistillery.vm (Wordpress 4.2) can be posted. This proves that there are no clockjacking protections implemented in Wordpress 4.2
+    - Vulnerability types: ClickJacking
+    - Tested in version: 4.2
+    - Fixed in version: Unknown
+  - [ ] GIF Walkthrough: ![](https://github.com/dallens/CodepathWeek7Wordpress/blob/master/ClickJacking.gif)
+  - [ ] Steps to recreate: 
+		1. Using the testing script provided by OWASP (https://www.owasp.org/index.php/Testing_for_Clickjacking_(OTG-CLIENT-009)), a comment can be posted to a wordpress post that will display the iframe. 
+		2. The script is:
+```
+<html>
+   <head>
+     <title>Clickjack test page</title>
+   </head>
+   <body>
+     <p>Website is vulnerable to clickjacking!</p>
+     <iframe src="http://wpdistillery.vm" width="500" height="500"></iframe>
+   </body>
+</html>
+```
+		3. Success requires posting as a user with admin priviledges, limiting the severity/risk of the attack.
+  - [ ] Affected source code:
+    - [source_file](https://core.trac.wordpress.org/browser/tags/version/src/source_file.php)
+### 6. WordPress <= 4.2 - Moderation Bypass: Implicit approval of subsequent subscriber comments
+  - [ ] Summary:
+		1. A comment by a subscriber typically needs approval by a moderator. However, a vulnerability exists such that a single comment approval my a moderator implicitly approves all subsequent comments made by that subscriber, bypassing moderation.
+    - Vulnerability types: Privilege Escalation
+    - Tested in version: 4.2
+    - Fixed in version: Unknown
+  - [ ] GIF Walkthrough: ![](https://github.com/dallens/CodepathWeek7Wordpress/blob/master/Escalation.gif)
+  - [ ] Steps to recreate: 
+		1. As a user with subscriber privileges, post one or more comments to a post. 
+		2. As an administrator, or one with comment approval privileges, approve one of the subscriber's comments. 
+		3. The subscriber may then post any additional comments with implicit approval (bypassing moderation entirely).
+  - [ ] Affected source code:
+    - [edit-comments.php](https://core.trac.wordpress.org/browser/trunk/src/wp-admin/edit-comments.php)
 ## Assets
 
 List any additional assets, such as scripts or files
