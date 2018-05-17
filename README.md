@@ -38,7 +38,7 @@ Time spent: **24** hours spent in total
     - Vulnerability types: URL Manipulation / User Enumeration
     - Tested in version: 4.2
     - Fixed in version: N/A
-  - [ ] GIF Walkthrough: UnauthenticatedUser_Enumeration.gif
+  - [ ] GIF Walkthrough: ![](https://github.com/dallens/CodepathWeek7Wordpress/blob/master/UnauthenticatedUser_Enumeration.gif)
   - [ ] Steps to recreate: 
 		1. Log in as user with access to WP-Admin but no user modification priviledges 
 		2. Insert the following as a URL: http://wpdistillery.vm/wp-admin/user-edit.php?user_id=2&wp_http_referer=%2Fwp-admin%2Fusers.php
